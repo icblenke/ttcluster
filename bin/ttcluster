@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+#--
+# bin/ttcluster
+#++
+#
+#= Tokyo Tyrant Cluster Admin Command
+#
+# Invoke ttcluster with help option for details.
+#
+#   <tt>% ttcluster --help</tt>
+#
+
+$:.unshift File.join(File.dirname(__FILE__), '..', 'lib')
+require 'ttcluster/runner'
+
+TTCluster::Runner.run
+

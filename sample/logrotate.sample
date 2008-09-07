@@ -1,0 +1,11 @@
+/var/ttcluster/logs/*.log {
+  missingok
+  notifempty
+  size=1M
+  rotate 5
+  create 0644 nobody nobody
+  sharedscripts
+  postrotate
+    ttcluster hup all > /dev/null
+  endscript
+}
