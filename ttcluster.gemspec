@@ -2,36 +2,56 @@
 # Tokyo Tyrant Cluster Gem Specification
 #
 
-##
-# Library
-$:.unshift File.join(File.dirname(__FILE__), 'lib')
-require 'ttcluster/version'
-
 
 ##
 # Constants
-AUTHOR     = "Kazuhiro Tanaka"
-EMAIL      = "craqueg@gmail.com"
-HOME_PAGE  = "~"
+GEM_NAME    = "ttcluster"
+PKG_VERSION = "0.1"
+SUMMARY     = "Tokyo Tyrant cluster administration tool"
+DESCRIPTION = SUMMARY
+AUTHOR      = "Kazuhiro Tanaka"
+EMAIL       = "craqueg@gmail.com"
+HOME_PAGE   = "http://github.com/kazutanaka/ttcluster"
 
-RDOC_MAIN  = "README"
-RDOC_TITLE = "Tokyo Tyrant Cluster"
+RDOC_MAIN   = "README"
+RDOC_TITLE  = "Tokyo Tyrant Cluster"
 
 
 ##
 # Gem Package Spec
 GEM_SPEC = Gem::Specification.new do |s|
-  s.name             = TTCluster::GEM_NAME
-  s.version          = TTCluster::VERSION
-  s.summary          = TTCluster::SUMMARY
-  s.description      = TTCluster::DESCRIPTION
+  s.name             = GEM_NAME
+  s.version          = PKG_VERSION
+  s.summary          = SUMMARY
+  s.description      = DESCRIPTION
   s.platform         = Gem::Platform::RUBY
-
   s.author           = AUTHOR
   s.email            = EMAIL
   s.homepage         = HOME_PAGE
 
-  s.files            = open("MANIFEST").read.split
+  s.files            = # MANIFEST
+%w(
+ChangeLog
+MANIFEST
+README
+Rakefile
+bin/ttcluster
+lib/ttcluster.rb
+lib/ttcluster/base_command.rb
+lib/ttcluster/commands.rb
+lib/ttcluster/config_command.rb
+lib/ttcluster/constants.rb
+lib/ttcluster/hup_command.rb
+lib/ttcluster/runner.rb
+lib/ttcluster/setup_command.rb
+lib/ttcluster/start_command.rb
+lib/ttcluster/status_command.rb
+lib/ttcluster/stop_command.rb
+lib/ttcluster/version.rb
+sample/logrotate.sample
+test/test_ttcluster.rb
+ttcluster.gemspec
+)
   s.test_files       = s.files.select {|f| f =~ %r|^test/test_.*rb$|}
   s.executables      = s.files.select {|f| f =~ %r|^bin/.*$|}.map {|f| f[4..-1]}
 
