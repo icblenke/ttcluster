@@ -27,6 +27,7 @@ module TTCluster
       statuses = get_statuses(@port)
 
       puts "TTCluster config:"
+      puts "  ttbase dir => '#{ttbase}'"
       statuses.each do |port, status|
         config = load_config(port)
         msg =

@@ -23,6 +23,10 @@ module TTCluster
       @runner.send :error, msg, code
     end
 
+    def ttbase
+      File.expand_path @ttbase
+    end
+
     def chdir_to_ttbase
       msg = !File.directory?(@ttbase)    ? ERR_NOT_DIRECTORY % @ttbase :
             !(File.readable?(@ttbase) &&
