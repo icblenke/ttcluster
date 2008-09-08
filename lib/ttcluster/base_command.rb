@@ -70,7 +70,7 @@ module TTCluster
     end
 
     def port_to_dbm_file(port)
-      "#{port_to_data_dir(port)}/cascket.tch"
+      "#{port_to_data_dir(port)}/casket.tch"
     end
 
     def port_to_rts_file(port)
