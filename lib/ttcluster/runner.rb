@@ -4,6 +4,7 @@
 
 
 require 'optparse'
+require 'etc'
 require 'ttcluster/commands'
 require 'ttcluster/constants'
 require 'ttcluster/version'
@@ -26,7 +27,9 @@ module TTCluster
     # 'ttcluster' script implementation.
     def initialize
       init_ttbase
+      init_user
       cmd = parse_options
+      switch_user
       kls = TTCluster.const_get("#{cmd.capitalize}Command")
       arg = cmd == "setup" ? ARGV[1,2] : ["#{ARGV[1]||'all'}"]
       kls.new(self, *arg).run
@@ -38,6 +41,10 @@ module TTCluster
        @ttbase = File.expand_path dir
     end
 
+    def init_user
+      @user = nil
+    end
+
     def parse_options
       # check command-line options
       opts = OptionParser.new do |opts|
@@ -47,6 +54,11 @@ module TTCluster
                       "       ttcluster {start|stop|status|config|hup} [port|all]\n",
                       "       ttcluster [-h|--help] [-v|--version]\n"
         opts.separator ""
+        opts.separator "command options:"
+        opts.on("-u", "--user USER") {|user| @user = user}
+        opts.on("-d", "--dir  DIR") {|dir| @ttbase = File.expand_path dir}
+        opts.separator ""
+        opts.separator "misc. options:"
         opts.on_tail("-h", "--help", "Show usage")      { help(opts) }
         opts.on_tail("-v", "--version", "Show version") { version }
       end
@@ -65,6 +77,15 @@ module TTCluster
       end
 
       ARGV[0] # /^(setup|start|stop|status|config|hup)$/
+    end
+
+    def switch_user
+      return unless @user
+      Process.euid = Etc.getpwnam(@user).uid
+    rescue ArgumentError
+      error(ERR_ILLEGAL_USER % @user, 1)
+    rescue Errno::EPERM
+      error(ERR_SWITCH_USER  % @user, 1)
     end
 
     def error(msg=nil, code=1)

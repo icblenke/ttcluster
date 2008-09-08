@@ -41,14 +41,16 @@ module TTCluster
 
   ERR_COMMAND_ARGUMENT  = "Command argument mismatch: '%s'".freeze
   ERR_ILLEGAL_COMMAND   = "Illegal command: '%s'".freeze
-  ERR_NOT_DIRECTORY     = "Not directory: '%s'".freeze
-  ERR_NOT_ACCESSIBLE    = "Not accessible: '%s'".freeze
+  ERR_NOT_DIRECTORY     = "Unable to chdir: '%s'".freeze
+  ERR_NOT_ACCESSIBLE    = "Dir not accessible: '%s'".freeze
   ERR_NO_PORT_DIR_FOUND = "No port dir found: '%s'".freeze
   ERR_SERVER_HOST       = "Server host must be localhost or hostname: '%s'".freeze
   ERR_SERVER_PORT       = "Server port illegal or used: '%s'".freeze
   ERR_MASTER_HOST       = "Master host must be lookupable: '%s'".freeze
   ERR_MASTER_PORT       = "Master port illegal: '%s'".freeze
-  ERR_MKDIR             = "Failed to mkdir: '%s'".freeze
+  ERR_MKDIR             = "Unable to mkdir: '%s'".freeze
+  ERR_ILLEGAL_USER      = "User illegal: '%s'".freeze
+  ERR_SWITCH_USER       = "Unable to switch user: '%s'".freeze
 
 end
 
