@@ -5,8 +5,9 @@
 
 ##
 # Constants
+#
 GEM_NAME    = "ttcluster"
-PKG_VERSION = "0.1"
+PKG_VERSION = "0.1.1"
 SUMMARY     = "Tokyo Tyrant cluster administration tool"
 DESCRIPTION = SUMMARY
 AUTHOR      = "Kazuhiro Tanaka"
@@ -19,6 +20,7 @@ RDOC_TITLE  = "Tokyo Tyrant Cluster"
 
 ##
 # Gem Package Spec
+#
 GEM_SPEC = Gem::Specification.new do |s|
   s.name             = GEM_NAME
   s.version          = PKG_VERSION
