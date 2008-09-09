@@ -106,10 +106,51 @@ module TTCluster
       open(port_to_pid_file(port)).gets.to_i rescue -1
     end
 
+    def start_server(port)
+      config = load_config(port)
+      exec_cmd = ttserver_command(config)
+      output = `#{exec_cmd}`
+
+      if $?.success?
+        sleep 0.2
+        read_pid_from_pid_file(port)
+      else
+        STDERR.puts output
+        -1
+      end
+    rescue
+      -1
+    end
+
     def stop_server(pid, signal="TERM")
       Process.kill(signal, pid)
     rescue
       false
+    end
+
+    def load_config(port)
+      config_file = port_to_config_file(port)
+      YAML.load File.read(config_file)
+    end
+
+    def ttserver_command(config)
+      server_host = config[SERVER_KEY][HOST_KEY]
+      server_port = config[SERVER_KEY][PORT_KEY]
+      server_sid  = config[SERVER_KEY][SID_KEY]
+      master_host = config[MASTER_KEY][HOST_KEY]
+      master_port = config[MASTER_KEY][PORT_KEY]
+      db_params   = config[SERVER_KEY][PARAM_KEY] || ''
+      db_params   = db_params[1..-1] while db_params =~ /^#/
+      ulog_limit  = config[SERVER_KEY][ULIM_KEY] || ''
+      ulog_async  = config[SERVER_KEY][UAS_KEY]
+ 
+      ulog_dir    = File.expand_path port_to_ulog_dir(server_port)
+      pid_file    = File.expand_path port_to_pid_file(server_port)
+      log_file    = File.expand_path port_to_log_file(server_port)
+      rts_file    = File.expand_path port_to_rts_file(server_port)
+      dbm_file    = File.expand_path port_to_dbm_file(server_port)
+
+      "ttserver -dmn -host #{server_host} -port #{server_port} -sid #{server_sid} -ulog #{ulog_dir} #{ulog_limit.empty? ? '' : '-ulim '+ulog_limit} #{ulog_async ? '-uas' : ''} -mhost #{master_host} -mport #{master_port} -pid #{pid_file} -log #{log_file} -rts #{rts_file} #{dbm_file}#{db_params.empty? ? '' : '#'+db_params}"
     end
 
     def port_to_status(port)

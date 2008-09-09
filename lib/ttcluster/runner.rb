@@ -51,7 +51,7 @@ module TTCluster
         opts.summary_width = 15
         opts.banner = "#{TTCluster::SUMMARY} (#{TTCluster::VERSION})\n\n",
                       "usage: ttcluster setup host:port mhost:mport\n",
-                      "       ttcluster {start|stop|status|config|hup} [port|all]\n",
+                      "       ttcluster {start|stop|restart|status|config|hup} [port|all]\n",
                       "       ttcluster [-h|--help] [-v|--version]\n"
         opts.separator ""
         opts.separator "command options:"
@@ -68,7 +68,7 @@ module TTCluster
       case ARGV[0]
       when nil
         help(opts)
-      when /^(start|stop|status|config|hup)$/
+      when /^(start|stop|restart|status|config|hup)$/
         error(ERR_COMMAND_ARGUMENT % ARGV[0], 1) unless (1..2).include?(ARGV.size)
       when /^setup$/
         error(ERR_COMMAND_ARGUMENT % ARGV[0], 1) unless ARGV.size==3
@@ -76,7 +76,7 @@ module TTCluster
         error(ERR_ILLEGAL_COMMAND % ARGV[0], 1)
       end
 
-      ARGV[0] # /^(setup|start|stop|status|config|hup)$/
+      ARGV[0] # /^(setup|start|restart|stop|status|config|hup)$/
     end
 
     def switch_user
