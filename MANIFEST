@@ -9,6 +9,7 @@ lib/ttcluster/commands.rb
 lib/ttcluster/config_command.rb
 lib/ttcluster/constants.rb
 lib/ttcluster/hup_command.rb
+lib/ttcluster/restart_command.rb
 lib/ttcluster/runner.rb
 lib/ttcluster/setup_command.rb
 lib/ttcluster/start_command.rb
