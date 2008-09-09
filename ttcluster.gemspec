@@ -7,10 +7,10 @@
 # Constants
 #
 GEM_NAME    = "ttcluster"
-PKG_VERSION = "0.1.1"
+PKG_VERSION = "0.1.2"
 SUMMARY     = "Tokyo Tyrant cluster administration tool"
 DESCRIPTION = SUMMARY
-AUTHOR      = "Kazuhiro Tanaka"
+AUTHOR      = "kazutanaka"
 EMAIL       = "craqueg@gmail.com"
 HOME_PAGE   = "http://github.com/kazutanaka/ttcluster"
 

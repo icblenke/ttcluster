@@ -1,4 +1,7 @@
-2008-09-08 (0.1.1)
+2008-09-09 (0.1.2)
+  * Show ttbase dir on 'config' command
+
+ 2008-09-08 (0.1.1)
   * Show ttbase dir on 'config' command
   * Add --user and --dir command-line options
   * Change dbm file from cascket.tch to casket.tch
