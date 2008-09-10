@@ -81,7 +81,9 @@ module TTCluster
 
     def switch_user
       return unless @user
-      Process.euid = Etc.getpwnam(@user).uid
+      uid, gid = lambda {|pw| [pw.uid, pw.gid]}[Etc.getpwnam(@user)]
+      Process.egid = gid
+      Process.euid = uid
     rescue ArgumentError
       error(ERR_ILLEGAL_USER % @user, 1)
     rescue Errno::EPERM
