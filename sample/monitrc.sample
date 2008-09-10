@@ -1,0 +1,9 @@
+check process ttcluster-1978 with pidfile /var/ttcluster/pids/1978.pid
+      start program = "/usr/bin/ttcluster -u nobody -d /var/ttcluster start 1978"
+      stop  program = "/usr/bin/ttcluster -u nobody -d /var/ttcluster stop  1978"
+      group ttcluster
+
+check process ttcluster-1979 with pidfile /var/ttcluster/pids/1979.pid
+      start program = "/usr/bin/ttcluster -u nobody -d /var/ttcluster start 1979"
+      stop  program = "/usr/bin/ttcluster -u nobody -d /var/ttcluster stop  1979"
+      group ttcluster

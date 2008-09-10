@@ -17,5 +17,6 @@ lib/ttcluster/status_command.rb
 lib/ttcluster/stop_command.rb
 lib/ttcluster/version.rb
 sample/logrotate.sample
+sample/monitrc.sample
 test/test_ttcluster.rb
 ttcluster.gemspec

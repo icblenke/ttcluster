@@ -7,7 +7,7 @@
 # Constants
 #
 GEM_NAME    = "ttcluster"
-PKG_VERSION = "0.1.2"
+PKG_VERSION = "0.1.3"
 SUMMARY     = "Tokyo Tyrant cluster administration tool"
 DESCRIPTION = SUMMARY
 AUTHOR      = "kazutanaka"
@@ -52,6 +52,7 @@ lib/ttcluster/status_command.rb
 lib/ttcluster/stop_command.rb
 lib/ttcluster/version.rb
 sample/logrotate.sample
+sample/monitrc.sample
 test/test_ttcluster.rb
 ttcluster.gemspec
 )
