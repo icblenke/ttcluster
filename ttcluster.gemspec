@@ -35,8 +35,10 @@ GEM_SPEC = Gem::Specification.new do |s|
 %w(
 ChangeLog
 MANIFEST
+MIT-LICENSE
 README
 Rakefile
+TODO
 bin/ttcluster
 lib/ttcluster.rb
 lib/ttcluster/base_command.rb

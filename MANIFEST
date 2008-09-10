@@ -1,7 +1,9 @@
 ChangeLog
 MANIFEST
+MIT-LICENSE
 README
 Rakefile
+TODO
 bin/ttcluster
 lib/ttcluster.rb
 lib/ttcluster/base_command.rb
