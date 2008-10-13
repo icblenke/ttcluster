@@ -1,3 +1,53 @@
 = Tokyo Tyrant Cluster
 
+Tokyo Tyrant is a network interface to the Tokyo Cabinet DBM.
+It provides replication by means of cmdline parameters.
+You have to remember and type long command to start HA DBM servers.
+
+This is a simple administration tool for Tokyo Tyrant clusters.
+Just setup a pair of host:port and start.
+You have a replicated DBM cluster running.
+
+
+== How to install
+
+Install the required packages of Tokyo Tyrant and Tokyo Cabinet.
+
+Build a ttcluster gem package and install.
+
+  $ gem build ttcluster.gemspec
+  $ sudo gem install ttcluster-*.gem -l
+
+
+== Tutorial
+
+First, create a base directory.
+
+  $ mkdir ~/ttcluster # -d default value
+
+Then, setup a pair of replicated Tokyo Tyrant servers.
+
+  $ ttcluster setup localhost:2008 localhost:2009 # server 2008, master 2009
+  $ ttcluster setup localhost:2009 localhost:2008 # server 2009, master 2008
+
+Check if the configuration of pair servers is valid.
+
+  $ ttcluster config # the master of the master of a server is the original server
+
+Start all servers and you have replicated DBM servers.
+
+  $ ttcluster start  # default to 'all'
+
+Control servers and play around.
+
+  $ ttcluster stop 2008                     # down 2008
+  $ ttcluster status                        # only 2009 is alive
+  $ tcrmgr put -port 2009 localhost foo bar # add 'foo' key on 2009
+  $ ttcluster start 2008                    # up 2008 and automatically replicated
+  $ tcrmgr get -port 2008 -pv localhost foo # see if 2008 has 'foo' key
+
+Use help option for other commands.
+
+  $ ttcluster --help
+
 
