@@ -7,7 +7,7 @@
 # Constants
 #
 GEM_NAME    = "ttcluster"
-PKG_VERSION = "0.1.4"
+PKG_VERSION = "0.1.4.1"
 SUMMARY     = "Tokyo Tyrant cluster administration tool"
 DESCRIPTION = SUMMARY
 AUTHOR      = "kazutanaka"

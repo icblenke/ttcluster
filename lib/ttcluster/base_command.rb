@@ -143,6 +143,8 @@ module TTCluster
       db_params   = db_params[1..-1] while db_params =~ /^#/
       ulog_limit  = config[SERVER_KEY][ULIM_KEY] || ''
       ulog_async  = config[SERVER_KEY][UAS_KEY]
+      ext         = config[SERVER_KEY][EXT]
+      extpc       = config[SERVER_KEY][EXT_PC]
  
       ulog_dir    = File.expand_path port_to_ulog_dir(server_port)
       pid_file    = File.expand_path port_to_pid_file(server_port)
@@ -150,7 +152,7 @@ module TTCluster
       rts_file    = File.expand_path port_to_rts_file(server_port)
       dbm_file    = File.expand_path port_to_dbm_file(server_port)
 
-      "ttserver -dmn -host #{server_host} -port #{server_port} -sid #{server_sid} -ulog #{ulog_dir} #{ulog_limit.empty? ? '' : '-ulim '+ulog_limit} #{ulog_async ? '-uas' : ''} -mhost #{master_host} -mport #{master_port} -pid #{pid_file} -log #{log_file} -rts #{rts_file} #{dbm_file}#{db_params.empty? ? '' : '#'+db_params}"
+      "ttserver -dmn -host #{server_host} -port #{server_port} -sid #{server_sid} -ulog #{ulog_dir} #{ulog_limit.empty? ? '' : '-ulim '+ulog_limit} #{ulog_async ? '-uas' : ''} #{ext ? "-ext #{ext}"} #{extpc ? "-extpc #{extpc}"} -mhost #{master_host} -mport #{master_port} -pid #{pid_file} -log #{log_file} -rts #{rts_file} #{dbm_file}#{db_params.empty? ? '' : '#'+db_params}"
     end
 
     def port_to_status(port)

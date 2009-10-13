@@ -20,6 +20,8 @@ module TTCluster
   UAS_KEY    = "ulog_async".freeze
   SERVER_KEY = "server".freeze
   MASTER_KEY = "master".freeze
+  EXT_KEY    = "ext".freeze
+  EXTPC_KEY  = "extpc".freeze
 
   DEFAULT_DB_PARAMS  = "#bnum=2000000#opts=ld".freeze
   DEFAULT_ULOG_LIMIT = "20m".freeze
