@@ -152,7 +152,7 @@ module TTCluster
       rts_file    = File.expand_path port_to_rts_file(server_port)
       dbm_file    = File.expand_path port_to_dbm_file(server_port)
 
-      "ttserver -dmn -host #{server_host} -port #{server_port} -sid #{server_sid} -ulog #{ulog_dir} #{ulog_limit.empty? ? '' : '-ulim '+ulog_limit} #{ulog_async ? '-uas' : ''} #{ext ? "-ext #{ext}"} #{extpc ? "-extpc #{extpc}"} -mhost #{master_host} -mport #{master_port} -pid #{pid_file} -log #{log_file} -rts #{rts_file} #{dbm_file}#{db_params.empty? ? '' : '#'+db_params}"
+      "ttserver -dmn -host #{server_host} -port #{server_port} -sid #{server_sid} -ulog #{ulog_dir} #{ulog_limit.empty? ? '' : '-ulim '+ulog_limit} #{ulog_async ? '-uas' : ''} #{ext ? '-ext '+ext : ''} #{extpc ? '-extpc '+extpc : ''} -mhost #{master_host} -mport #{master_port} -pid #{pid_file} -log #{log_file} -rts #{rts_file} #{dbm_file}#{db_params.empty? ? '' : '#'+db_params}"
     end
 
     def port_to_status(port)
